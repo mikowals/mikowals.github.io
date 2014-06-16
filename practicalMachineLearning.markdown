@@ -31,6 +31,7 @@ To make a more real world example I removed columns with #N/A or '' entries and 
 
     train <- train [, colSums( is.na( train ) == 0]
     train <- train [, colSums(  train == '' ) == 0]
+    train <- train [, 7:59]
 
 This left 52 predictors available which was computationally heavy.  So I tried to identify the most interesting predictors.
 
@@ -45,4 +46,4 @@ This listed the 12 best predictors.  I tried the identified predictors in a new 
     model
     confusionMatrix( predict( model, validate ), validate$classe )
 
-I iterated the steps above a few times to get the best fit in the validation data and the ultimate result was 12 variables that got an out of sample accurace on the validation set of 98.9%.
+I iterated the steps above a few times  trying smaller and larges 'sizes' in `rfe()` to get the best fit in the validation data.  The ultimate result was 12 variables that got an out of sample accurace on the validation set of 98.9%.
