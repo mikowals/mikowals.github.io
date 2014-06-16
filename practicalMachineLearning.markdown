@@ -46,4 +46,8 @@ This listed the 12 best predictors.  I tried the identified predictors in a new 
     model
     confusionMatrix( predict( model, validate ), validate$classe )
 
-I iterated the steps above a few times  trying smaller and larges 'sizes' in `rfe()` to get the best fit in the validation data.  The ultimate result was 12 variables that got an out of sample accurace on the validation set of 98.9%.
+I iterated the steps above a few times trying smaller and larges 'sizes' in `rfe()` to get the best fit in the validation data.  The ultimate result was 12 variables that got an out-of-sample accuracy on the validation set of 98.9%.
+
+One choice made during this analysis was to focus on 'random forest' models.  They ran faster than than other models and got superior fit.  Other models were tried in the `rfe()` step and subsequent model fit.
+
+I also used 'oob' ( out of bag ) as the error measure in random forest models.  It gave a slightly better fit both in- and out-of-sample than other methods like 'cv' and 'LOOCV'.  It also ran faster which was mostly noticeable when working with all 52 variables.
